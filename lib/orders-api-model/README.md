@@ -115,7 +115,7 @@ rescue AmzSpApi::OrdersApiModel::ApiError => e
 end
 
 api_instance = AmzSpApi::OrdersApiModel::OrdersV0Api.new
-marketplace_ids = ['marketplace_ids_example'] # Array<String> | A list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces.
+marketplace_ids = ['marketplace_ids_example'] # Array<String> | A list of MarketplaceId values. Used to select orders that were placed in the specified marketplaces.  See the [Selling Partner API Developer Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/developer-guide/SellingPartnerApiDeveloperGuide.md#marketplaceid-values) for a complete list of marketplaceId values.
 opts = { 
   created_after: 'created_after_example', # String | A date used for selecting orders created after (or at) a specified time. Only orders placed after the specified time are returned. Either the CreatedAfter parameter or the LastUpdatedAfter parameter is required. Both cannot be empty. The date must be in ISO 8601 format.
   created_before: 'created_before_example', # String | A date used for selecting orders created before (or at) a specified time. Only orders placed before the specified time are returned. The date must be in ISO 8601 format.
@@ -129,7 +129,10 @@ opts = {
   max_results_per_page: 56, # Integer | A number that indicates the maximum number of orders that can be returned per page. Value must be 1 - 100. Default 100.
   easy_ship_shipment_statuses: ['easy_ship_shipment_statuses_example'], # Array<String> | A list of EasyShipShipmentStatus values. Used to select Easy Ship orders with statuses that match the specified  values. If EasyShipShipmentStatus is specified, only Amazon Easy Ship orders are returned.Possible values: PendingPickUp (Amazon has not yet picked up the package from the seller). LabelCanceled (The seller canceled the pickup). PickedUp (Amazon has picked up the package from the seller). AtOriginFC (The packaged is at the origin fulfillment center). AtDestinationFC (The package is at the destination fulfillment center). OutForDelivery (The package is out for delivery). Damaged (The package was damaged by the carrier). Delivered (The package has been delivered to the buyer). RejectedByBuyer (The package has been rejected by the buyer). Undeliverable (The package cannot be delivered). ReturnedToSeller (The package was not delivered to the buyer and was returned to the seller). ReturningToSeller (The package was not delivered to the buyer and is being returned to the seller).
   next_token: 'next_token_example', # String | A string token returned in the response of your previous request.
-  amazon_order_ids: ['amazon_order_ids_example'] # Array<String> | A list of AmazonOrderId values. An AmazonOrderId is an Amazon-defined order identifier, in 3-7-7 format.
+  amazon_order_ids: ['amazon_order_ids_example'], # Array<String> | A list of AmazonOrderId values. An AmazonOrderId is an Amazon-defined order identifier, in 3-7-7 format.
+  actual_fulfillment_supply_source_id: 'actual_fulfillment_supply_source_id_example', # String | Denotes the recommended sourceId where the order should be fulfilled from.
+  is_ispu: true, # BOOLEAN | When true, this order is marked to be picked up from a store rather than delivered.
+  store_chain_store_id: 'store_chain_store_id_example' # String | The store chain store identifier. Linked to a specific store in a store chain.
 }
 
 begin
@@ -137,6 +140,17 @@ begin
   p result
 rescue AmzSpApi::OrdersApiModel::ApiError => e
   puts "Exception when calling OrdersV0Api->get_orders: #{e}"
+end
+
+api_instance = AmzSpApi::OrdersApiModel::ShipmentApi.new
+body = AmzSpApi::OrdersApiModel::UpdateShipmentStatusRequest.new # UpdateShipmentStatusRequest | Request to update the shipment status.
+order_id = 'order_id_example' # String | An Amazon-defined order identifier, in 3-7-7 format.
+
+
+begin
+  api_instance.update_shipment_status(body, order_id)
+rescue AmzSpApi::OrdersApiModel::ApiError => e
+  puts "Exception when calling ShipmentApi->update_shipment_status: #{e}"
 end
 ```
 
@@ -152,12 +166,16 @@ Class | Method | HTTP request | Description
 *AmzSpApi::OrdersApiModel::OrdersV0Api* | [**get_order_items**](docs/OrdersV0Api.md#get_order_items) | **GET** /orders/v0/orders/{orderId}/orderItems | 
 *AmzSpApi::OrdersApiModel::OrdersV0Api* | [**get_order_items_buyer_info**](docs/OrdersV0Api.md#get_order_items_buyer_info) | **GET** /orders/v0/orders/{orderId}/orderItems/buyerInfo | 
 *AmzSpApi::OrdersApiModel::OrdersV0Api* | [**get_orders**](docs/OrdersV0Api.md#get_orders) | **GET** /orders/v0/orders | 
+*AmzSpApi::OrdersApiModel::ShipmentApi* | [**update_shipment_status**](docs/ShipmentApi.md#update_shipment_status) | **POST** /orders/v0/orders/{orderId}/shipment | 
 
 ## Documentation for Models
 
  - [AmzSpApi::OrdersApiModel::Address](docs/Address.md)
+ - [AmzSpApi::OrdersApiModel::AutomatedShippingSettings](docs/AutomatedShippingSettings.md)
  - [AmzSpApi::OrdersApiModel::BuyerCustomizedInfoDetail](docs/BuyerCustomizedInfoDetail.md)
+ - [AmzSpApi::OrdersApiModel::BuyerInfo](docs/BuyerInfo.md)
  - [AmzSpApi::OrdersApiModel::BuyerTaxInfo](docs/BuyerTaxInfo.md)
+ - [AmzSpApi::OrdersApiModel::BuyerTaxInformation](docs/BuyerTaxInformation.md)
  - [AmzSpApi::OrdersApiModel::Error](docs/Error.md)
  - [AmzSpApi::OrdersApiModel::ErrorList](docs/ErrorList.md)
  - [AmzSpApi::OrdersApiModel::FulfillmentInstruction](docs/FulfillmentInstruction.md)
@@ -167,6 +185,9 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::OrdersApiModel::GetOrderItemsResponse](docs/GetOrderItemsResponse.md)
  - [AmzSpApi::OrdersApiModel::GetOrderResponse](docs/GetOrderResponse.md)
  - [AmzSpApi::OrdersApiModel::GetOrdersResponse](docs/GetOrdersResponse.md)
+ - [AmzSpApi::OrdersApiModel::ItemBuyerInfo](docs/ItemBuyerInfo.md)
+ - [AmzSpApi::OrdersApiModel::MarketplaceId](docs/MarketplaceId.md)
+ - [AmzSpApi::OrdersApiModel::MarketplaceTaxInfo](docs/MarketplaceTaxInfo.md)
  - [AmzSpApi::OrdersApiModel::Money](docs/Money.md)
  - [AmzSpApi::OrdersApiModel::Order](docs/Order.md)
  - [AmzSpApi::OrdersApiModel::OrderAddress](docs/OrderAddress.md)
@@ -175,7 +196,9 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::OrdersApiModel::OrderItemBuyerInfo](docs/OrderItemBuyerInfo.md)
  - [AmzSpApi::OrdersApiModel::OrderItemBuyerInfoList](docs/OrderItemBuyerInfoList.md)
  - [AmzSpApi::OrdersApiModel::OrderItemList](docs/OrderItemList.md)
+ - [AmzSpApi::OrdersApiModel::OrderItems](docs/OrderItems.md)
  - [AmzSpApi::OrdersApiModel::OrderItemsBuyerInfoList](docs/OrderItemsBuyerInfoList.md)
+ - [AmzSpApi::OrdersApiModel::OrderItemsInner](docs/OrderItemsInner.md)
  - [AmzSpApi::OrdersApiModel::OrderItemsList](docs/OrderItemsList.md)
  - [AmzSpApi::OrdersApiModel::OrderList](docs/OrderList.md)
  - [AmzSpApi::OrdersApiModel::OrdersList](docs/OrdersList.md)
@@ -185,8 +208,11 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::OrdersApiModel::PointsGrantedDetail](docs/PointsGrantedDetail.md)
  - [AmzSpApi::OrdersApiModel::ProductInfoDetail](docs/ProductInfoDetail.md)
  - [AmzSpApi::OrdersApiModel::PromotionIdList](docs/PromotionIdList.md)
+ - [AmzSpApi::OrdersApiModel::ShipmentStatus](docs/ShipmentStatus.md)
  - [AmzSpApi::OrdersApiModel::TaxClassification](docs/TaxClassification.md)
  - [AmzSpApi::OrdersApiModel::TaxCollection](docs/TaxCollection.md)
+ - [AmzSpApi::OrdersApiModel::UpdateShipmentStatusErrorResponse](docs/UpdateShipmentStatusErrorResponse.md)
+ - [AmzSpApi::OrdersApiModel::UpdateShipmentStatusRequest](docs/UpdateShipmentStatusRequest.md)
 
 ## Documentation for Authorization
 
