@@ -1,7 +1,7 @@
 =begin
 #Selling Partner API for Notifications
 
-#The Selling Partner API for Notifications lets you subscribe to notifications that are relevant to a selling partner's business. Using this API you can create a destination to receive notifications, subscribe to notifications, delete notification subscriptions, and more.  For more information, see the [Notifications Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/notifications-api-use-case-guide/notifications-use-case-guide-v1.md)
+#The Selling Partner API for Notifications lets you subscribe to notifications that are relevant to a selling partner's business. Using this API you can create a destination to receive notifications, subscribe to notifications, delete notification subscriptions, and more.  For more information, see the [Notifications Use Case Guide](doc:notifications-api-v1-use-case-guide).
 
 OpenAPI spec version: v1
 
@@ -16,6 +16,9 @@ require 'notifications/version'
 require 'notifications/configuration'
 
 # Models
+require 'notifications/models/aggregation_filter'
+require 'notifications/models/aggregation_settings'
+require 'notifications/models/aggregation_time_period'
 require 'notifications/models/create_destination_request'
 require 'notifications/models/create_destination_response'
 require 'notifications/models/create_subscription_request'
@@ -30,10 +33,14 @@ require 'notifications/models/error'
 require 'notifications/models/error_list'
 require 'notifications/models/event_bridge_resource'
 require 'notifications/models/event_bridge_resource_specification'
+require 'notifications/models/event_filter'
 require 'notifications/models/get_destination_response'
 require 'notifications/models/get_destinations_response'
 require 'notifications/models/get_subscription_by_id_response'
 require 'notifications/models/get_subscription_response'
+require 'notifications/models/marketplace_filter'
+require 'notifications/models/marketplace_ids'
+require 'notifications/models/processing_directive'
 require 'notifications/models/sqs_resource'
 require 'notifications/models/subscription'
 

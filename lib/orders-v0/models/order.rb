@@ -23,7 +23,7 @@ module AmzSpApi::OrdersV0
     # The date when the order was created.
     attr_accessor :purchase_date
 
-    # The date when the order was last updated.  Note: LastUpdateDate is returned with an incorrect date for orders that were last updated before 2009-04-01.
+    # The date when the order was last updated.  __Note__: LastUpdateDate is returned with an incorrect date for orders that were last updated before 2009-04-01.
     attr_accessor :last_update_date
 
     # The current order status.
@@ -62,7 +62,6 @@ module AmzSpApi::OrdersV0
     # The shipment service level category of the order.  Possible values: Expedited, FreeEconomy, NextDay, SameDay, SecondDay, Scheduled, Standard.
     attr_accessor :shipment_service_level_category
 
-    # The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders.  Possible values: PendingPickUp, LabelCanceled, PickedUp, OutForDelivery, Damaged, Delivered, RejectedByBuyer, Undeliverable, ReturnedToSeller, ReturningToSeller.
     attr_accessor :easy_ship_shipment_status
 
     # Custom ship label for Checkout by Amazon (CBA).
@@ -71,10 +70,10 @@ module AmzSpApi::OrdersV0
     # The type of the order.
     attr_accessor :order_type
 
-    # The start of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.  Note: EarliestShipDate might not be returned for orders placed before February 1, 2013.
+    # The start of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.  __Note__: EarliestShipDate might not be returned for orders placed before February 1, 2013.
     attr_accessor :earliest_ship_date
 
-    # The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.  Note: LatestShipDate might not be returned for orders placed before February 1, 2013.
+    # The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.  __Note__: LatestShipDate might not be returned for orders placed before February 1, 2013.
     attr_accessor :latest_ship_date
 
     # The start of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Returned only for seller-fulfilled orders.
@@ -110,9 +109,12 @@ module AmzSpApi::OrdersV0
     # When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller.
     attr_accessor :is_sold_by_ab
 
+    # When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller.
+    attr_accessor :is_iba
+
     attr_accessor :default_ship_from_location_address
 
-    # The buyer’s invoicing preference.
+    # The buyer's invoicing preference. Available only in the TR marketplace.
     attr_accessor :buyer_invoice_preference
 
     attr_accessor :buyer_tax_information
@@ -121,6 +123,9 @@ module AmzSpApi::OrdersV0
 
     # When true, this order is marked to be picked up from a store rather than delivered.
     attr_accessor :is_ispu
+
+    # When true, this order is marked to be delivered to an Access Point. The access location is chosen by the customer. Access Points include Amazon Hub Lockers, Amazon Hub Counters, and pickup points operated by carriers.
+    attr_accessor :is_access_point_order
 
     attr_accessor :marketplace_tax_info
 
@@ -132,6 +137,11 @@ module AmzSpApi::OrdersV0
     attr_accessor :buyer_info
 
     attr_accessor :automated_shipping_settings
+
+    # Whether the order contains regulated items which may require additional approval steps before being fulfilled.
+    attr_accessor :has_regulated_items
+
+    attr_accessor :electronic_invoice_status
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -191,16 +201,20 @@ module AmzSpApi::OrdersV0
         :'promise_response_due_date' => :'PromiseResponseDueDate',
         :'is_estimated_ship_date_set' => :'IsEstimatedShipDateSet',
         :'is_sold_by_ab' => :'IsSoldByAB',
+        :'is_iba' => :'IsIBA',
         :'default_ship_from_location_address' => :'DefaultShipFromLocationAddress',
         :'buyer_invoice_preference' => :'BuyerInvoicePreference',
         :'buyer_tax_information' => :'BuyerTaxInformation',
         :'fulfillment_instruction' => :'FulfillmentInstruction',
         :'is_ispu' => :'IsISPU',
+        :'is_access_point_order' => :'IsAccessPointOrder',
         :'marketplace_tax_info' => :'MarketplaceTaxInfo',
         :'seller_display_name' => :'SellerDisplayName',
         :'shipping_address' => :'ShippingAddress',
         :'buyer_info' => :'BuyerInfo',
-        :'automated_shipping_settings' => :'AutomatedShippingSettings'
+        :'automated_shipping_settings' => :'AutomatedShippingSettings',
+        :'has_regulated_items' => :'HasRegulatedItems',
+        :'electronic_invoice_status' => :'ElectronicInvoiceStatus'
       }
     end
 
@@ -240,16 +254,20 @@ module AmzSpApi::OrdersV0
         :'promise_response_due_date' => :'Object',
         :'is_estimated_ship_date_set' => :'Object',
         :'is_sold_by_ab' => :'Object',
+        :'is_iba' => :'Object',
         :'default_ship_from_location_address' => :'Object',
         :'buyer_invoice_preference' => :'Object',
         :'buyer_tax_information' => :'Object',
         :'fulfillment_instruction' => :'Object',
         :'is_ispu' => :'Object',
+        :'is_access_point_order' => :'Object',
         :'marketplace_tax_info' => :'Object',
         :'seller_display_name' => :'Object',
         :'shipping_address' => :'Object',
         :'buyer_info' => :'Object',
-        :'automated_shipping_settings' => :'Object'
+        :'automated_shipping_settings' => :'Object',
+        :'has_regulated_items' => :'Object',
+        :'electronic_invoice_status' => :'Object'
       }
     end
 
@@ -406,6 +424,10 @@ module AmzSpApi::OrdersV0
         self.is_sold_by_ab = attributes[:'is_sold_by_ab']
       end
 
+      if attributes.key?(:'is_iba')
+        self.is_iba = attributes[:'is_iba']
+      end
+
       if attributes.key?(:'default_ship_from_location_address')
         self.default_ship_from_location_address = attributes[:'default_ship_from_location_address']
       end
@@ -426,6 +448,10 @@ module AmzSpApi::OrdersV0
         self.is_ispu = attributes[:'is_ispu']
       end
 
+      if attributes.key?(:'is_access_point_order')
+        self.is_access_point_order = attributes[:'is_access_point_order']
+      end
+
       if attributes.key?(:'marketplace_tax_info')
         self.marketplace_tax_info = attributes[:'marketplace_tax_info']
       end
@@ -444,6 +470,14 @@ module AmzSpApi::OrdersV0
 
       if attributes.key?(:'automated_shipping_settings')
         self.automated_shipping_settings = attributes[:'automated_shipping_settings']
+      end
+
+      if attributes.key?(:'has_regulated_items')
+        self.has_regulated_items = attributes[:'has_regulated_items']
+      end
+
+      if attributes.key?(:'electronic_invoice_status')
+        self.electronic_invoice_status = attributes[:'electronic_invoice_status']
       end
     end
 
@@ -578,16 +612,20 @@ module AmzSpApi::OrdersV0
           promise_response_due_date == o.promise_response_due_date &&
           is_estimated_ship_date_set == o.is_estimated_ship_date_set &&
           is_sold_by_ab == o.is_sold_by_ab &&
+          is_iba == o.is_iba &&
           default_ship_from_location_address == o.default_ship_from_location_address &&
           buyer_invoice_preference == o.buyer_invoice_preference &&
           buyer_tax_information == o.buyer_tax_information &&
           fulfillment_instruction == o.fulfillment_instruction &&
           is_ispu == o.is_ispu &&
+          is_access_point_order == o.is_access_point_order &&
           marketplace_tax_info == o.marketplace_tax_info &&
           seller_display_name == o.seller_display_name &&
           shipping_address == o.shipping_address &&
           buyer_info == o.buyer_info &&
-          automated_shipping_settings == o.automated_shipping_settings
+          automated_shipping_settings == o.automated_shipping_settings &&
+          has_regulated_items == o.has_regulated_items &&
+          electronic_invoice_status == o.electronic_invoice_status
     end
 
     # @see the `==` method
@@ -599,7 +637,7 @@ module AmzSpApi::OrdersV0
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [amazon_order_id, seller_order_id, purchase_date, last_update_date, order_status, fulfillment_channel, sales_channel, order_channel, ship_service_level, order_total, number_of_items_shipped, number_of_items_unshipped, payment_execution_detail, payment_method, payment_method_details, marketplace_id, shipment_service_level_category, easy_ship_shipment_status, cba_displayable_shipping_label, order_type, earliest_ship_date, latest_ship_date, earliest_delivery_date, latest_delivery_date, is_business_order, is_prime, is_premium_order, is_global_express_enabled, replaced_order_id, is_replacement_order, promise_response_due_date, is_estimated_ship_date_set, is_sold_by_ab, default_ship_from_location_address, buyer_invoice_preference, buyer_tax_information, fulfillment_instruction, is_ispu, marketplace_tax_info, seller_display_name, shipping_address, buyer_info, automated_shipping_settings].hash
+      [amazon_order_id, seller_order_id, purchase_date, last_update_date, order_status, fulfillment_channel, sales_channel, order_channel, ship_service_level, order_total, number_of_items_shipped, number_of_items_unshipped, payment_execution_detail, payment_method, payment_method_details, marketplace_id, shipment_service_level_category, easy_ship_shipment_status, cba_displayable_shipping_label, order_type, earliest_ship_date, latest_ship_date, earliest_delivery_date, latest_delivery_date, is_business_order, is_prime, is_premium_order, is_global_express_enabled, replaced_order_id, is_replacement_order, promise_response_due_date, is_estimated_ship_date_set, is_sold_by_ab, is_iba, default_ship_from_location_address, buyer_invoice_preference, buyer_tax_information, fulfillment_instruction, is_ispu, is_access_point_order, marketplace_tax_info, seller_display_name, shipping_address, buyer_info, automated_shipping_settings, has_regulated_items, electronic_invoice_status].hash
     end
 
     # Builds the object from hash

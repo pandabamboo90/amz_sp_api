@@ -233,4 +233,10 @@ describe 'OrderItem' do
     end
   end
 
+  describe 'test attribute "buyer_requested_cancel"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
 end

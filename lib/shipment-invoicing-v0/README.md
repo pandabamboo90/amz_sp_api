@@ -67,7 +67,7 @@ rescue AmzSpApi::ShipmentInvoicingV0::ApiError => e
 end
 
 api_instance = AmzSpApi::ShipmentInvoicingV0::ShipmentInvoiceApi.new
-shipment_id = 'shipment_id_example' # String | The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](https://github.com/amzn/selling-partner-api-docs/blob/main/guides/en-US/use-case-guides/notifications-api-use-case-guide/notifications-use-case-guide-v1.md).
+shipment_id = 'shipment_id_example' # String | The identifier for the shipment. Get this value from the FBAOutboundShipmentStatus notification. For information about subscribing to notifications, see the [Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
 
 
 begin

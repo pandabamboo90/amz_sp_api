@@ -36,4 +36,5 @@ Name | Type | Description | Notes
 **store_chain_store_id** | **String** | The store chain store identifier. Linked to a specific store in a store chain. | [optional] 
 **deemed_reseller_category** | **String** | The category of deemed reseller. This applies to selling partners that are not based in the EU and is used to help them meet the VAT Deemed Reseller tax laws in the EU and UK. | [optional] 
 **buyer_info** | [**ItemBuyerInfo**](ItemBuyerInfo.md) |  | [optional] 
+**buyer_requested_cancel** | [**BuyerRequestedCancel**](BuyerRequestedCancel.md) |  | [optional] 
 

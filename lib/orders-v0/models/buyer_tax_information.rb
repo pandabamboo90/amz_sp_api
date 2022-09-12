@@ -12,7 +12,7 @@ Swagger Codegen version: 3.0.33
 require 'date'
 
 module AmzSpApi::OrdersV0
-  # Contains the business invoice tax information.
+  # Contains the business invoice tax information. Available only in the TR marketplace.
   class BuyerTaxInformation
     # Business buyer's company legal name.
     attr_accessor :buyer_legal_company_name

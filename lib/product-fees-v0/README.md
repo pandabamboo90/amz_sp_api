@@ -78,6 +78,17 @@ begin
 rescue AmzSpApi::ProductFeesV0::ApiError => e
   puts "Exception when calling FeesApi->get_my_fees_estimate_for_sku: #{e}"
 end
+
+api_instance = AmzSpApi::ProductFeesV0::FeesApi.new
+body = [AmzSpApi::ProductFeesV0::FeesEstimateByIdRequest.new] # Array<FeesEstimateByIdRequest> | 
+
+
+begin
+  result = api_instance.get_my_fees_estimates(body)
+  p result
+rescue AmzSpApi::ProductFeesV0::ApiError => e
+  puts "Exception when calling FeesApi->get_my_fees_estimates: #{e}"
+end
 ```
 
 ## Documentation for API Endpoints
@@ -88,6 +99,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AmzSpApi::ProductFeesV0::FeesApi* | [**get_my_fees_estimate_for_asin**](docs/FeesApi.md#get_my_fees_estimate_for_asin) | **POST** /products/fees/v0/items/{Asin}/feesEstimate | 
 *AmzSpApi::ProductFeesV0::FeesApi* | [**get_my_fees_estimate_for_sku**](docs/FeesApi.md#get_my_fees_estimate_for_sku) | **POST** /products/fees/v0/listings/{SellerSKU}/feesEstimate | 
+*AmzSpApi::ProductFeesV0::FeesApi* | [**get_my_fees_estimates**](docs/FeesApi.md#get_my_fees_estimates) | **POST** /products/fees/v0/feesEstimate | 
 
 ## Documentation for Models
 
@@ -96,6 +108,7 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::ProductFeesV0::FeeDetail](docs/FeeDetail.md)
  - [AmzSpApi::ProductFeesV0::FeeDetailList](docs/FeeDetailList.md)
  - [AmzSpApi::ProductFeesV0::FeesEstimate](docs/FeesEstimate.md)
+ - [AmzSpApi::ProductFeesV0::FeesEstimateByIdRequest](docs/FeesEstimateByIdRequest.md)
  - [AmzSpApi::ProductFeesV0::FeesEstimateError](docs/FeesEstimateError.md)
  - [AmzSpApi::ProductFeesV0::FeesEstimateErrorDetail](docs/FeesEstimateErrorDetail.md)
  - [AmzSpApi::ProductFeesV0::FeesEstimateIdentifier](docs/FeesEstimateIdentifier.md)
@@ -104,6 +117,10 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::ProductFeesV0::GetMyFeesEstimateRequest](docs/GetMyFeesEstimateRequest.md)
  - [AmzSpApi::ProductFeesV0::GetMyFeesEstimateResponse](docs/GetMyFeesEstimateResponse.md)
  - [AmzSpApi::ProductFeesV0::GetMyFeesEstimateResult](docs/GetMyFeesEstimateResult.md)
+ - [AmzSpApi::ProductFeesV0::GetMyFeesEstimatesErrorList](docs/GetMyFeesEstimatesErrorList.md)
+ - [AmzSpApi::ProductFeesV0::GetMyFeesEstimatesRequest](docs/GetMyFeesEstimatesRequest.md)
+ - [AmzSpApi::ProductFeesV0::GetMyFeesEstimatesResponse](docs/GetMyFeesEstimatesResponse.md)
+ - [AmzSpApi::ProductFeesV0::IdType](docs/IdType.md)
  - [AmzSpApi::ProductFeesV0::IncludedFeeDetail](docs/IncludedFeeDetail.md)
  - [AmzSpApi::ProductFeesV0::IncludedFeeDetailList](docs/IncludedFeeDetailList.md)
  - [AmzSpApi::ProductFeesV0::MoneyType](docs/MoneyType.md)

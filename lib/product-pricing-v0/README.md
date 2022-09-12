@@ -87,6 +87,17 @@ rescue AmzSpApi::ProductPricingV0::ApiError => e
 end
 
 api_instance = AmzSpApi::ProductPricingV0::ProductPricingApi.new
+body = AmzSpApi::ProductPricingV0::GetItemOffersBatchRequest.new # GetItemOffersBatchRequest | 
+
+
+begin
+  result = api_instance.get_item_offers_batch(body)
+  p result
+rescue AmzSpApi::ProductPricingV0::ApiError => e
+  puts "Exception when calling ProductPricingApi->get_item_offers_batch: #{e}"
+end
+
+api_instance = AmzSpApi::ProductPricingV0::ProductPricingApi.new
 marketplace_id = 'marketplace_id_example' # String | A marketplace identifier. Specifies the marketplace for which prices are returned.
 item_condition = 'item_condition_example' # String | Filters the offer listings based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
 seller_sku = 'seller_sku_example' # String | Identifies an item in the given marketplace. SellerSKU is qualified by the seller's SellerId, which is included with every operation that you submit.
@@ -99,6 +110,17 @@ begin
   p result
 rescue AmzSpApi::ProductPricingV0::ApiError => e
   puts "Exception when calling ProductPricingApi->get_listing_offers: #{e}"
+end
+
+api_instance = AmzSpApi::ProductPricingV0::ProductPricingApi.new
+body = AmzSpApi::ProductPricingV0::GetListingOffersBatchRequest.new # GetListingOffersBatchRequest | 
+
+
+begin
+  result = api_instance.get_listing_offers_batch(body)
+  p result
+rescue AmzSpApi::ProductPricingV0::ApiError => e
+  puts "Exception when calling ProductPricingApi->get_listing_offers_batch: #{e}"
 end
 
 api_instance = AmzSpApi::ProductPricingV0::ProductPricingApi.new
@@ -127,13 +149,19 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_competitive_pricing**](docs/ProductPricingApi.md#get_competitive_pricing) | **GET** /products/pricing/v0/competitivePrice | 
 *AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_item_offers**](docs/ProductPricingApi.md#get_item_offers) | **GET** /products/pricing/v0/items/{Asin}/offers | 
+*AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_item_offers_batch**](docs/ProductPricingApi.md#get_item_offers_batch) | **POST** /batches/products/pricing/v0/itemOffers | 
 *AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_listing_offers**](docs/ProductPricingApi.md#get_listing_offers) | **GET** /products/pricing/v0/listings/{SellerSKU}/offers | 
+*AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_listing_offers_batch**](docs/ProductPricingApi.md#get_listing_offers_batch) | **POST** /batches/products/pricing/v0/listingOffers | 
 *AmzSpApi::ProductPricingV0::ProductPricingApi* | [**get_pricing**](docs/ProductPricingApi.md#get_pricing) | **GET** /products/pricing/v0/price | 
 
 ## Documentation for Models
 
  - [AmzSpApi::ProductPricingV0::ASINIdentifier](docs/ASINIdentifier.md)
+ - [AmzSpApi::ProductPricingV0::Asin](docs/Asin.md)
  - [AmzSpApi::ProductPricingV0::AttributeSetList](docs/AttributeSetList.md)
+ - [AmzSpApi::ProductPricingV0::BatchOffersRequestParams](docs/BatchOffersRequestParams.md)
+ - [AmzSpApi::ProductPricingV0::BatchOffersResponse](docs/BatchOffersResponse.md)
+ - [AmzSpApi::ProductPricingV0::BatchRequest](docs/BatchRequest.md)
  - [AmzSpApi::ProductPricingV0::BuyBoxEligibleOffers](docs/BuyBoxEligibleOffers.md)
  - [AmzSpApi::ProductPricingV0::BuyBoxPriceType](docs/BuyBoxPriceType.md)
  - [AmzSpApi::ProductPricingV0::BuyBoxPrices](docs/BuyBoxPrices.md)
@@ -141,17 +169,40 @@ Class | Method | HTTP request | Description
  - [AmzSpApi::ProductPricingV0::CompetitivePriceType](docs/CompetitivePriceType.md)
  - [AmzSpApi::ProductPricingV0::CompetitivePricingType](docs/CompetitivePricingType.md)
  - [AmzSpApi::ProductPricingV0::ConditionType](docs/ConditionType.md)
+ - [AmzSpApi::ProductPricingV0::CustomerType](docs/CustomerType.md)
  - [AmzSpApi::ProductPricingV0::DetailedShippingTimeType](docs/DetailedShippingTimeType.md)
  - [AmzSpApi::ProductPricingV0::Error](docs/Error.md)
  - [AmzSpApi::ProductPricingV0::ErrorList](docs/ErrorList.md)
+ - [AmzSpApi::ProductPricingV0::Errors](docs/Errors.md)
  - [AmzSpApi::ProductPricingV0::FulfillmentChannelType](docs/FulfillmentChannelType.md)
+ - [AmzSpApi::ProductPricingV0::GetItemOffersBatchRequest](docs/GetItemOffersBatchRequest.md)
+ - [AmzSpApi::ProductPricingV0::GetItemOffersBatchResponse](docs/GetItemOffersBatchResponse.md)
+ - [AmzSpApi::ProductPricingV0::GetListingOffersBatchRequest](docs/GetListingOffersBatchRequest.md)
+ - [AmzSpApi::ProductPricingV0::GetListingOffersBatchResponse](docs/GetListingOffersBatchResponse.md)
+ - [AmzSpApi::ProductPricingV0::GetOffersHttpStatusLine](docs/GetOffersHttpStatusLine.md)
  - [AmzSpApi::ProductPricingV0::GetOffersResponse](docs/GetOffersResponse.md)
  - [AmzSpApi::ProductPricingV0::GetOffersResult](docs/GetOffersResult.md)
  - [AmzSpApi::ProductPricingV0::GetPricingResponse](docs/GetPricingResponse.md)
+ - [AmzSpApi::ProductPricingV0::HttpMethod](docs/HttpMethod.md)
+ - [AmzSpApi::ProductPricingV0::HttpRequestHeaders](docs/HttpRequestHeaders.md)
+ - [AmzSpApi::ProductPricingV0::HttpResponseHeaders](docs/HttpResponseHeaders.md)
+ - [AmzSpApi::ProductPricingV0::HttpUri](docs/HttpUri.md)
  - [AmzSpApi::ProductPricingV0::IdentifierType](docs/IdentifierType.md)
+ - [AmzSpApi::ProductPricingV0::ItemCondition](docs/ItemCondition.md)
  - [AmzSpApi::ProductPricingV0::ItemIdentifier](docs/ItemIdentifier.md)
+ - [AmzSpApi::ProductPricingV0::ItemOffersRequest](docs/ItemOffersRequest.md)
+ - [AmzSpApi::ProductPricingV0::ItemOffersRequestList](docs/ItemOffersRequestList.md)
+ - [AmzSpApi::ProductPricingV0::ItemOffersRequestParams](docs/ItemOffersRequestParams.md)
+ - [AmzSpApi::ProductPricingV0::ItemOffersResponse](docs/ItemOffersResponse.md)
+ - [AmzSpApi::ProductPricingV0::ItemOffersResponseList](docs/ItemOffersResponseList.md)
+ - [AmzSpApi::ProductPricingV0::ListingOffersRequest](docs/ListingOffersRequest.md)
+ - [AmzSpApi::ProductPricingV0::ListingOffersRequestList](docs/ListingOffersRequestList.md)
+ - [AmzSpApi::ProductPricingV0::ListingOffersRequestParams](docs/ListingOffersRequestParams.md)
+ - [AmzSpApi::ProductPricingV0::ListingOffersResponse](docs/ListingOffersResponse.md)
+ - [AmzSpApi::ProductPricingV0::ListingOffersResponseList](docs/ListingOffersResponseList.md)
  - [AmzSpApi::ProductPricingV0::LowestPriceType](docs/LowestPriceType.md)
  - [AmzSpApi::ProductPricingV0::LowestPrices](docs/LowestPrices.md)
+ - [AmzSpApi::ProductPricingV0::MarketplaceId](docs/MarketplaceId.md)
  - [AmzSpApi::ProductPricingV0::MoneyType](docs/MoneyType.md)
  - [AmzSpApi::ProductPricingV0::NumberOfOfferListingsList](docs/NumberOfOfferListingsList.md)
  - [AmzSpApi::ProductPricingV0::NumberOfOffers](docs/NumberOfOffers.md)

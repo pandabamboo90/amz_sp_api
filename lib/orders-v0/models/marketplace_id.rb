@@ -12,7 +12,7 @@ Swagger Codegen version: 3.0.33
 require 'date'
 
 module AmzSpApi::OrdersV0
-  # the unobfuscated marketplace ID
+  # The unobfuscated marketplace identifier.
   class MarketplaceId
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map

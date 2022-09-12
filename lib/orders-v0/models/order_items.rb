@@ -12,7 +12,7 @@ Swagger Codegen version: 3.0.33
 require 'date'
 
 module AmzSpApi::OrdersV0
-  # the list of order items and quantities when the seller wants to partially update the shipment status of the order
+  # For partial shipment status updates, the list of order items and quantities to be updated.
   class OrderItems
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map

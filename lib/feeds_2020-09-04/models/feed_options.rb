@@ -12,7 +12,7 @@ Swagger Codegen version: 3.0.33
 require 'date'
 
 module AmzSpApi::Feeds_20200904
-  # Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](https://github.com/amzn/selling-partner-api-docs/blob/main/references/feeds-api/feedtype-values.md).
+  # Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
   class FeedOptions
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map

@@ -13,10 +13,10 @@ require 'date'
 
 module AmzSpApi::OrdersV0
   class OrderItemsInner
-    # the unique identifier for the order item
+    # The unique identifier of the order item.
     attr_accessor :order_item_id
 
-    # the quantity of items that needs an update of the shipment status
+    # The quantity for which to update the shipment status.
     attr_accessor :quantity
 
     # Attribute mapping from ruby-style variable name to JSON key.

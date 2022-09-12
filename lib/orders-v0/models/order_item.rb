@@ -98,6 +98,8 @@ module AmzSpApi::OrdersV0
 
     attr_accessor :buyer_info
 
+    attr_accessor :buyer_requested_cancel
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -155,7 +157,8 @@ module AmzSpApi::OrdersV0
         :'ioss_number' => :'IossNumber',
         :'store_chain_store_id' => :'StoreChainStoreId',
         :'deemed_reseller_category' => :'DeemedResellerCategory',
-        :'buyer_info' => :'BuyerInfo'
+        :'buyer_info' => :'BuyerInfo',
+        :'buyer_requested_cancel' => :'BuyerRequestedCancel'
       }
     end
 
@@ -194,7 +197,8 @@ module AmzSpApi::OrdersV0
         :'ioss_number' => :'Object',
         :'store_chain_store_id' => :'Object',
         :'deemed_reseller_category' => :'Object',
-        :'buyer_info' => :'Object'
+        :'buyer_info' => :'Object',
+        :'buyer_requested_cancel' => :'Object'
       }
     end
 
@@ -350,6 +354,10 @@ module AmzSpApi::OrdersV0
       if attributes.key?(:'buyer_info')
         self.buyer_info = attributes[:'buyer_info']
       end
+
+      if attributes.key?(:'buyer_requested_cancel')
+        self.buyer_requested_cancel = attributes[:'buyer_requested_cancel']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -429,7 +437,8 @@ module AmzSpApi::OrdersV0
           ioss_number == o.ioss_number &&
           store_chain_store_id == o.store_chain_store_id &&
           deemed_reseller_category == o.deemed_reseller_category &&
-          buyer_info == o.buyer_info
+          buyer_info == o.buyer_info &&
+          buyer_requested_cancel == o.buyer_requested_cancel
     end
 
     # @see the `==` method
@@ -441,7 +450,7 @@ module AmzSpApi::OrdersV0
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [asin, seller_sku, order_item_id, title, quantity_ordered, quantity_shipped, product_info, points_granted, item_price, shipping_price, item_tax, shipping_tax, shipping_discount, shipping_discount_tax, promotion_discount, promotion_discount_tax, promotion_ids, cod_fee, cod_fee_discount, is_gift, condition_note, condition_id, condition_subtype_id, scheduled_delivery_start_date, scheduled_delivery_end_date, price_designation, tax_collection, serial_number_required, is_transparency, ioss_number, store_chain_store_id, deemed_reseller_category, buyer_info].hash
+      [asin, seller_sku, order_item_id, title, quantity_ordered, quantity_shipped, product_info, points_granted, item_price, shipping_price, item_tax, shipping_tax, shipping_discount, shipping_discount_tax, promotion_discount, promotion_discount_tax, promotion_ids, cod_fee, cod_fee_discount, is_gift, condition_note, condition_id, condition_subtype_id, scheduled_delivery_start_date, scheduled_delivery_end_date, price_designation, tax_collection, serial_number_required, is_transparency, ioss_number, store_chain_store_id, deemed_reseller_category, buyer_info, buyer_requested_cancel].hash
     end
 
     # Builds the object from hash
